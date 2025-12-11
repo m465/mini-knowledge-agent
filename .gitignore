@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+knowledgeAgent/
+
+# Environment Variables
+.env
+
+# Logs
+*.log
+agent.log
+
+# Database
+chroma_db_store/
+*.sqlite3
+
+# OS specific
+.DS_Store
+Thumbs.db
