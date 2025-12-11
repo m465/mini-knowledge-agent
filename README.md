@@ -1,10 +1,3 @@
-Here is the updated README.md that reflects the new modular file structure.
-
-code
-Markdown
-download
-content_copy
-expand_less
 # Mini Knowledge Agent (Modular CLI)
 
 A command-line AI assistant built with Python and OpenAI. This agent is designed to intelligently "route" user queries to specific tools (Weather, Web Search, Math, PDF Summarization) using OpenAI's Function Calling capabilities.
@@ -23,12 +16,12 @@ This project uses a **modular architecture**, separating configuration, tool log
 ## 📂 Project Structure
 
 ```text
-mini_agent/
-│
+.
 ├── main.py                 # Entry point (Run this file)
 ├── config.py               # API key loading and client initialization
 ├── requirements.txt        # Python dependencies
 ├── .env                    # Secrets (API Keys)
+├── contract.pdf            # Example PDF for summarization
 │
 ├── tools/                  # Tool logic package
 │   ├── __init__.py
@@ -39,89 +32,62 @@ mini_agent/
 └── utils/                  # Utilities package
     ├── __init__.py
     └── logger.py           # Logging configuration
-🛠️ Prerequisites
+```
 
-Python 3.8+ installed.
+## 🛠️ Prerequisites
 
-API Keys:
+*   **Python 3.8+** installed.
+*   **API Keys**:
+    *   **OpenAI API Key**: For the LLM (Brain).
+    *   **OpenWeatherMap API Key**: For weather data (Free tier available).
+    *   **Tavily API Key**: For web search (Free tier available).
 
-OpenAI API Key: For the LLM (Brain).
+## 📥 Installation & Setup
 
-OpenWeatherMap API Key: For weather data (Free tier available).
+1.  **Clone or Download** this repository.
 
-Tavily API Key: For web search (Free tier available).
+2.  **Install Dependencies**:
+    Run the following command in your terminal:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-📥 Installation & Setup
+3.  **Configure Environment Variables**:
+    Create a file named `.env` in the root directory. Add your keys as follows:
+    ```env
+    OPENAI_API_KEY=sk-proj-your-openai-key-here
+    OPENWEATHER_API_KEY=your-openweather-key-here
+    TAVILY_API_KEY=tvly-your-tavily-key-here
+    ```
 
-Clone or Download this repository.
+## 🏃 Usage
 
-Install Dependencies:
-Run the following command in your terminal:
+To start the agent, run the `main.py` file:
 
-code
-Bash
-download
-content_copy
-expand_less
-pip install -r requirements.txt
-
-Configure Environment Variables:
-Create a file named .env in the root directory. Add your keys as follows:
-
-code
-Env
-download
-content_copy
-expand_less
-OPENAI_API_KEY=sk-proj-your-openai-key-here
-OPENWEATHER_API_KEY=your-openweather-key-here
-TAVILY_API_KEY=tvly-your-tavily-key-here
-🏃 Usage
-
-To start the agent, run the main.py file:
-
-code
-Bash
-download
-content_copy
-expand_less
+```bash
 python main.py
-Example Queries
+```
+
+### Example Queries
 
 Once the agent is running, try these inputs:
 
-Weather: "What is the weather like in London right now?"
+*   **Weather**: "What is the weather like in London right now?"
+*   **Search**: "Who won the latest F1 race?"
+*   **Math**: "Calculate 15 * 24 + 100"
+*   **Date**: "What day of the week is it?"
+*   **PDF**: "Summarize the file named contract.pdf"
+    *   *Note: Ensure `contract.pdf` exists in the same folder as `main.py`.*
 
-Search: "Who won the latest F1 race?"
+## 📝 Logging
 
-Math: "Calculate 15 * 24 + 100"
+The agent automatically creates a file named `agent.log` in the root directory. This file records timestamps, which tools were triggered, and any errors that occurred. Useful for debugging if a tool fails to run.
 
-Date: "What day of the week is it?"
+## ⚠️ Limitations
 
-PDF: "Summarize the file named document.pdf"
+*   **PDF Reading**: To save tokens and costs, the agent is currently configured to read only the first 3 pages of a PDF.
+*   **Math Safety**: The math tool uses a restricted environment but should still be used with standard arithmetic expressions.
 
-Note: Ensure document.pdf exists in the same folder as main.py.
-
-📝 Logging
-
-The agent automatically creates a file named agent.log in the root directory.
-
-This file records timestamps, which tools were triggered, and any errors that occurred.
-
-Useful for debugging if a tool fails to run.
-
-⚠️ Limitations
-
-PDF Reading: To save tokens and costs, the agent is currently configured to read only the first 3 pages of a PDF.
-
-Math Safety: The math tool uses a restricted environment but should still be used with standard arithmetic expressions.
-
-📜 License
+## 📜 License
 
 This project is open-source and available for educational purposes.
-
-code
-Code
-download
-content_copy
-expand_less
